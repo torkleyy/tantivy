@@ -17,7 +17,7 @@ use indexer::index_writer::HEAP_SIZE_MIN;
 use indexer::segment_updater::save_new_metas;
 use num_cpus;
 use reader::IndexReaderBuilder;
-use reader::{IndexReader, ReloadPolicy};
+use reader::IndexReader;
 use schema::Field;
 use schema::FieldType;
 use schema::Schema;
