@@ -305,7 +305,7 @@ mod test {
     fn test_empty() {
         let schema = Schema::builder().build();
         let index = Index::create_in_ram(schema.clone());
-        let reader = index.reader();
+        let reader = index.reader().unwrap();
         let searcher = reader.searcher();
         let searcher_space_usage = searcher.space_usage();
         assert_eq!(0, searcher_space_usage.total());
@@ -344,7 +344,7 @@ mod test {
             index_writer.commit().unwrap();
         }
 
-        let reader = index.reader();
+        let reader = index.reader().unwrap();
         let searcher = reader.searcher();
         let searcher_space_usage = searcher.space_usage();
         assert!(searcher_space_usage.total() > 0);
@@ -384,7 +384,7 @@ mod test {
             index_writer.commit().unwrap();
         }
 
-        let reader = index.reader();
+        let reader = index.reader().unwrap();
         let searcher = reader.searcher();
         let searcher_space_usage = searcher.space_usage();
         assert!(searcher_space_usage.total() > 0);
@@ -423,7 +423,7 @@ mod test {
             index_writer.add_document(doc!(name => "hello hi goodbye"));
             index_writer.commit().unwrap();
         }
-        let reader = index.reader();
+        let reader = index.reader().unwrap();
         let searcher = reader.searcher();
         let searcher_space_usage = searcher.space_usage();
         assert!(searcher_space_usage.total() > 0);
@@ -470,7 +470,7 @@ mod test {
             index_writer2.commit().unwrap();
         }
 
-        let reader = index.reader();
+        let reader = index.reader().unwrap();
         let searcher = reader.searcher();
         let searcher_space_usage = searcher.space_usage();
         assert!(searcher_space_usage.total() > 0);

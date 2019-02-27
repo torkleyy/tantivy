@@ -188,8 +188,8 @@ impl Index {
         }
     }
 
-    pub fn reader(&self) -> IndexReader {
-        self.reader_builder().into()
+    pub fn reader(&self) -> Result<IndexReader> {
+        self.reader_builder().try_into()
     }
 
     pub fn reader_builder(&self) -> IndexReaderBuilder {
